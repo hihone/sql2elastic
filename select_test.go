@@ -1,6 +1,7 @@
 package elasticsql
 
 import (
+	"fmt"
 	"testing"
 
 	"encoding/json"
@@ -146,4 +147,16 @@ func TestBadSQL(t *testing.T) {
 			t.Error("can not be true, these cases are not supported!")
 		}
 	}
+}
+
+func TestDemo(t *testing.T) {
+	sql := `
+select * from es_index where address like '%渝%'
+`
+	a, _, err := Convert(sql)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	fmt.Println(a)
 }
